@@ -1,7 +1,7 @@
 'use server'
 
 import { auth } from '@clerk/nextjs'
-import { InputType } from './types'
+import { InputType, ReturnType } from './types'
 import { db } from '@/lib/db'
 import { revalidatePath } from 'next/cache'
 import { createSafeAction } from '@/lib/create-safe-action'
@@ -22,7 +22,7 @@ const handler = async (data: InputType): Promise<ReturnType> => {
 	try {
 		board = await db.board.create({
 			data: {
-				title,
+				title: title,
 			},
 		})
 	} catch (error) {
@@ -32,7 +32,7 @@ const handler = async (data: InputType): Promise<ReturnType> => {
 	}
 
 	revalidatePath(`/boards/${board.id}`)
-	return { data: data }
+	return { data: board }
 }
 
 export const createBoard = createSafeAction(CreateBoard, handler)
