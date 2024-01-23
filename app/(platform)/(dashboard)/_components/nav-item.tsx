@@ -5,13 +5,12 @@ import {
 	AccordionItem,
 	AccordionTrigger,
 } from '@/components/ui/accordion'
-import { cn } from '@/lib/utils'
-import Image from 'next/image'
-import React from 'react'
-import { Activity, CreditCard, Layout, Settings } from 'lucide-react'
-import { usePathname, useRouter } from 'next/navigation'
 import { Button } from '@/components/ui/button'
 import { Skeleton } from '@/components/ui/skeleton'
+import { cn } from '@/lib/utils'
+import { Activity, CreditCard, Layout, Settings } from 'lucide-react'
+import Image from 'next/image'
+import { usePathname, useRouter } from 'next/navigation'
 
 export type Organization = {
 	id: string
@@ -27,7 +26,7 @@ interface NavItemProps {
 	onExpand: (id: string) => void
 }
 
-const NavItem = ({
+export const NavItem = ({
 	isExpanded,
 	isActive,
 	organization,
@@ -121,5 +120,3 @@ NavItem.Skeleton = function SkeletonNavItem() {
 		</div>
 	)
 }
-
-export default NavItem

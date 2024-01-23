@@ -1,9 +1,7 @@
 import Logo from '@/components/logo'
 import { Button } from '@/components/ui/button'
-import Link from 'next/link'
-import React from 'react'
 
-function Footer() {
+export const Footer = () => {
 	return (
 		<div className='fixed bottom-0 w-full h-14 p-4 border-t bg-slate-100'>
 			<div
@@ -29,5 +27,3 @@ function Footer() {
 		</div>
 	)
 }
-
-export default Footer

@@ -3,9 +3,9 @@ import { Button } from '@/components/ui/button'
 import { OrganizationSwitcher, UserButton } from '@clerk/nextjs'
 import { Plus } from 'lucide-react'
 import React from 'react'
-import MobileSidebar from './mobile-sidebar'
+import { MobileSidebar } from './mobile-sidebar'
 
-const Navbar = () => {
+export const Navbar = () => {
 	return (
 		<nav className='fixed z-50 top-0 px-4 w-full h-14 border-b shadow-sm bg-white flex items-center justify-between'>
 			<MobileSidebar />
@@ -62,5 +62,3 @@ const Navbar = () => {
 		</nav>
 	)
 }
-
-export default Navbar

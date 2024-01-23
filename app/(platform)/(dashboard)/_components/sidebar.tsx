@@ -5,15 +5,15 @@ import { Button } from '@/components/ui/button'
 import { Skeleton } from '@/components/ui/skeleton'
 import { useOrganization, useOrganizationList } from '@clerk/nextjs'
 import { Plus } from 'lucide-react'
-import { useLocalStorage } from 'usehooks-ts'
-import NavItem, { Organization } from './nav-item'
 import Link from 'next/link'
+import { useLocalStorage } from 'usehooks-ts'
+import { Organization, NavItem } from './nav-item'
 
 interface SidebarProps {
 	storageKey?: string
 }
 
-const Sidebar = ({ storageKey = 't-sidebar-state' }: SidebarProps) => {
+export const Sidebar = ({ storageKey = 't-sidebar-state' }: SidebarProps) => {
 	const [expanded, setExpanded] = useLocalStorage<Record<string, any>>(
 		storageKey,
 		{},
@@ -97,5 +97,3 @@ const Sidebar = ({ storageKey = 't-sidebar-state' }: SidebarProps) => {
 		</>
 	)
 }
-
-export default Sidebar

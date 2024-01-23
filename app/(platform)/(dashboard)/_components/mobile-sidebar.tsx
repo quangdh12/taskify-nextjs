@@ -5,10 +5,10 @@ import { Sheet, SheetContent } from '@/components/ui/sheet'
 import { useMobileSidebar } from '@/hooks/use-mobile-sidebar'
 import { Menu } from 'lucide-react'
 import { usePathname } from 'next/navigation'
-import React, { useEffect, useState } from 'react'
-import Sidebar from './sidebar'
+import { useEffect, useState } from 'react'
+import { Sidebar } from './sidebar'
 
-const MobileSidebar = () => {
+export const MobileSidebar = () => {
 	const pathname = usePathname()
 	const [isMounted, setIsMounted] = useState(false)
 
@@ -52,5 +52,3 @@ const MobileSidebar = () => {
 		</>
 	)
 }
-
-export default MobileSidebar
