@@ -7,7 +7,7 @@ const headingFont = localFont({
 	src: '../public/fonts/font.woff2',
 })
 
-function Logo() {
+export const Logo = () => {
 	return (
 		<Link href='/'>
 			<div
@@ -33,5 +33,3 @@ function Logo() {
 		</Link>
 	)
 }
-
-export default Logo
