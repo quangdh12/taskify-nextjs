@@ -90,6 +90,7 @@ export const ListForm = () => {
 					<div className='flex items-center gap-x-1'>
 						<FormSubmit>Add list</FormSubmit>
 						<Button
+							disabled={isEditing}
 							onClick={disableEditing}
 							size='sm'
 							variant='ghost'
