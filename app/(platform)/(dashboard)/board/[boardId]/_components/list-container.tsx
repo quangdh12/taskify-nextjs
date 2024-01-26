@@ -2,7 +2,7 @@
 
 import { toast } from 'sonner'
 import { useEffect, useState } from 'react'
-import { DragDropContext, Droppable } from '@hello-pangea/dnd'
+import { DragDropContext, DropResult, Droppable } from '@hello-pangea/dnd'
 import { useAction } from '@/hooks/use-action'
 import { updateListOrder } from '@/actions/update-list-order'
 import { updateCardOrder } from '@/actions/update-card-order'
@@ -53,7 +53,7 @@ export const ListContainer = ({ data, boardId }: ListContainerProps) => {
     setOrderedData(data)
   }, [data])
 
-  const onDragEnd = (result: any) => {
+  const onDragEnd = (result: DropResult) => {
     const { destination, source, type } = result
 
     if (!destination) {
@@ -144,7 +144,11 @@ export const ListContainer = ({ data, boardId }: ListContainerProps) => {
         })
 
         setOrderedData(newOrderedData)
-        // TODO: Trigger server action
+
+        executeUpdateCardOrder({
+          boardId,
+          items: destList.cards
+        })
       }
     }
   }
