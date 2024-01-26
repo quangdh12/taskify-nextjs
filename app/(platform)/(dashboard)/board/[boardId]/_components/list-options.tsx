@@ -27,25 +27,31 @@ interface ListOptionsProps {
 export const ListOptions = ({ data, onAddCard }: ListOptionsProps) => {
   const closeRef = useRef<ElementRef<'button'>>(null)
 
-  const { execute: executeDelete } = useAction(deleteList, {
-    onSuccess: (data) => {
-      toast.success(`List "${data.title}" deleted`)
-      closeRef.current?.click()
-    },
-    onError: (error) => {
-      toast.error(error)
+  const { execute: executeDelete, isLoading: isLoadingDelete } = useAction(
+    deleteList,
+    {
+      onSuccess: (data) => {
+        toast.success(`List "${data.title}" deleted`)
+        closeRef.current?.click()
+      },
+      onError: (error) => {
+        toast.error(error)
+      }
     }
-  })
+  )
 
-  const { execute: executeCopy } = useAction(copyList, {
-    onSuccess: (data) => {
-      toast.success(`List "${data.title}" copied`)
-      closeRef.current?.click()
-    },
-    onError: (error) => {
-      toast.error(error)
+  const { execute: executeCopy, isLoading: isLoadingCopy } = useAction(
+    copyList,
+    {
+      onSuccess: (data) => {
+        toast.success(`List "${data.title}" copied`)
+        closeRef.current?.click()
+      },
+      onError: (error) => {
+        toast.error(error)
+      }
     }
-  })
+  )
 
   const onDelete = (formData: FormData) => {
     const id = formData.get('id') as string
@@ -93,6 +99,7 @@ export const ListOptions = ({ data, onAddCard }: ListOptionsProps) => {
           <input hidden name='id' id='id' value={data.id} />
           <input hidden name='boardId' id='boardId' value={data.boardId} />
           <FormSubmit
+            disabled={isLoadingCopy}
             className='rounded-none w-full h-auto p-2 px-5 justify-start
                 font-normal text-sm'
             variant='ghost'
@@ -106,6 +113,7 @@ export const ListOptions = ({ data, onAddCard }: ListOptionsProps) => {
           <input hidden name='id' id='id' value={data.id} />
           <input hidden name='boardId' id='boardId' value={data.boardId} />
           <FormSubmit
+            disabled={isLoadingDelete}
             className='rounded-none w-full h-auto p-2 px-5 justify-start
                 font-normal text-sm'
             variant='ghost'
