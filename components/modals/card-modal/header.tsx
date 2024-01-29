@@ -26,6 +26,10 @@ export const Header = ({ data }: HeaderProps) => {
         queryKey: ['card', data.id]
       })
 
+      queryClient.invalidateQueries({
+        queryKey: ['card-logs', data.id]
+      })
+
       toast.success(`Renamed to "${data.title}"`)
       setTitle(data.title)
     },
@@ -64,6 +68,7 @@ export const Header = ({ data }: HeaderProps) => {
           <FormInput
             ref={inputRef}
             onBlur={onBlur}
+            errors={fieldErrors}
             id='title'
             defaultValue={title}
             className='font-semibold text-xl px-1 text-neutral-700 bg-transparent border-transparent relative -left-1.5 w-[95%] focus-visible:bg-white focus-visible:border-input mb-0.5 truncate'
