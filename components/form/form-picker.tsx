@@ -99,10 +99,10 @@ export const FormPicker = ({ id, errors }: FormPickerProps) => {
             >
               {image.user.name}
             </Link>
-            <FormErrors id='image' errors={errors} />
           </div>
         ))}
       </div>
+      <FormErrors id='image' errors={errors} />
     </div>
   )
 }
