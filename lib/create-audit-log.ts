@@ -1,6 +1,7 @@
 import { auth, currentUser } from '@clerk/nextjs'
 import { ACTION, ENTITY_TYPE } from '@prisma/client'
 import { db } from './db'
+import { NextResponse } from 'next/server'
 
 interface Props {
   entityId: string
@@ -33,6 +34,7 @@ export const createAuditLog = async (props: Props) => {
       }
     })
   } catch (error) {
+    return new NextResponse('Something went wrong!', { status: 500 })
     console.log('[AUDIT_LOG_ERROR]', error)
   }
 }

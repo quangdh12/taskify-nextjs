@@ -16,6 +16,7 @@ import { FormPicker } from './form-picker'
 import { FormSubmit } from './form-submit'
 import { ElementRef, useRef } from 'react'
 import { useRouter } from 'next/navigation'
+import { useProModal } from '@/hooks/use-pro-modal'
 
 interface FormPopoverProps {
   children: React.ReactNode
@@ -30,10 +31,11 @@ export const FormPopover = ({
   side = 'bottom',
   sideOffset
 }: FormPopoverProps) => {
+  const proModal = useProModal()
   const router = useRouter()
   const closeRef = useRef<ElementRef<'button'>>(null)
 
-  const { execute, fieldErrors } = useAction(createBoard, {
+  const { execute, fieldErrors, error } = useAction(createBoard, {
     onSuccess: (data) => {
       toast.success('Board has been created!')
       closeRef.current?.click()
@@ -41,6 +43,7 @@ export const FormPopover = ({
     },
     onError: (error) => {
       toast.error(error)
+      proModal.onOpen()
     }
   })
 
@@ -74,12 +77,7 @@ export const FormPopover = ({
         <form action={onSubmit} className='space-y-4'>
           <div className='space-y-4'>
             <FormPicker id='image' errors={fieldErrors} />
-            <FormInput
-              id='title'
-              label='Board title'
-              type='text'
-              errors={fieldErrors}
-            />
+            <FormInput id='title' label='Board title' type='text' />
           </div>
           <FormSubmit className='w-full'>Create</FormSubmit>
         </form>
