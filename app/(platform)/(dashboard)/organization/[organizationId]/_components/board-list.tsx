@@ -24,7 +24,8 @@ export const BoardList = async () => {
     },
     orderBy: {
       createdAt: 'desc'
-    }
+    },
+    take: 20
   })
 
   const availableCount = await getAvailableCount()

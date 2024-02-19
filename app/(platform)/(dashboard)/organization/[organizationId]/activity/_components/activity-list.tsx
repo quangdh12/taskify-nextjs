@@ -17,7 +17,8 @@ export const ActivityList = async () => {
     },
     orderBy: {
       createdAt: 'desc'
-    }
+    },
+    take: 20
   })
 
   return (

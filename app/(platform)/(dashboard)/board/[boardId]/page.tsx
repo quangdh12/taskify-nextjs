@@ -34,7 +34,8 @@ const BoardIdPage = async ({ params }: BoardIdPageProps) => {
     },
     orderBy: {
       order: 'asc'
-    }
+    },
+    take: 20
   })
 
   return (
