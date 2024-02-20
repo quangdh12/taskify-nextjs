@@ -21,6 +21,7 @@ export const Info = ({ isPro }: InfoProps) => {
       <div className='w-[60px] h-[60px] relative'>
         <Image
           fill
+          sizes='4'
           src={organization?.imageUrl!}
           alt='Organization'
           className='rounded-md object-cover'
